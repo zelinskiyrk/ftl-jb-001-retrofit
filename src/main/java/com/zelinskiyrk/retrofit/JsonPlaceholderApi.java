@@ -1,10 +1,7 @@
 package com.zelinskiyrk.retrofit;
 
 import com.zelinskiyrk.retrofit.request.*;
-import com.zelinskiyrk.retrofit.response.AlbumResponse;
-import com.zelinskiyrk.retrofit.response.CommentResponse;
-import com.zelinskiyrk.retrofit.response.PostResponse;
-import com.zelinskiyrk.retrofit.response.UserResponse;
+import com.zelinskiyrk.retrofit.response.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -77,5 +74,14 @@ public interface JsonPlaceholderApi {
 
     @DELETE("/comments/{id}")
     Call<Void> commentDelete(@Path("id") Integer id);
+
+    @GET("/albums/{id}/photos")
+    Call<List<PhotoResponse>> photoFromAlbum(@Path("id") Integer id);
+
+    @GET("/users/{id}/todos")
+    Call<List<TodosResponse>> todosById(@Path("id") Integer id);
+
+    @GET("users/{id}/posts")
+    Call<List<PostResponse>> postsByUser(@Path("id") Integer id);
 
 }

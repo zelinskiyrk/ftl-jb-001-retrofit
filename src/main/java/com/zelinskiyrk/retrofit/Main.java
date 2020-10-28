@@ -1,10 +1,7 @@
 package com.zelinskiyrk.retrofit;
 
 import com.zelinskiyrk.retrofit.request.*;
-import com.zelinskiyrk.retrofit.response.AlbumResponse;
-import com.zelinskiyrk.retrofit.response.CommentResponse;
-import com.zelinskiyrk.retrofit.response.PostResponse;
-import com.zelinskiyrk.retrofit.response.UserResponse;
+import com.zelinskiyrk.retrofit.response.*;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -179,6 +176,18 @@ public class Main {
         System.out.println("-------- Comment Delete --------");
         Boolean commentDelete = api.commentDelete(1).execute().isSuccessful();
         System.out.println(commentDelete);
+
+        System.out.println("-------- Get Photo From Albums By Id --------");
+        List<PhotoResponse> photoFromAlbum = api.photoFromAlbum(1).execute().body();
+        System.out.println(photoFromAlbum);
+
+        System.out.println("-------- Get Todo's By User Id --------");
+        List<TodosResponse> todosById = api.todosById(1).execute().body();
+        System.out.println(todosById);
+
+        System.out.println("-------- Get Posts By User Id --------");
+        List<PostResponse> postsByUser = api.postsByUser(1).execute().body();
+        System.out.println(postsByUser);
 
     }
 
