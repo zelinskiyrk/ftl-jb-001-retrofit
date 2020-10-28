@@ -150,6 +150,36 @@ public class Main {
         Boolean userDelete = api.userDelete(1).execute().isSuccessful();
         System.out.println(userDelete);
 
+        System.out.println("-------- GET All Comments --------");
+        List<CommentResponse> allComments = api.allComments().execute().body();
+        System.out.println(allComments);
+
+        System.out.println("-------- GET Comment By Id --------");
+        CommentResponse commentById = api.getCommentById(1).execute().body();
+        System.out.println(commentById);
+
+        System.out.println("-------- Comment Create --------");
+        CommentResponse commentCreate = api.commentCreate(CommentCreateRequest.builder()
+                .name("Jane")
+                .postId(1)
+                .email("mail@mail.com")
+                .body("foo")
+                .build()).execute().body();
+        System.out.println(commentCreate);
+
+        System.out.println("-------- Comment Update --------");
+        CommentResponse commentUpdate = api.commentUpdate(1, CommentUpdateRequest.builder()
+                .body("newCommentText")
+                .postId(15)
+                .name("Serg")
+                .email("ser@ser.com")
+                .build()).execute().body();
+        System.out.println(commentUpdate);
+
+        System.out.println("-------- Comment Delete --------");
+        Boolean commentDelete = api.commentDelete(1).execute().isSuccessful();
+        System.out.println(commentDelete);
+
     }
 
 }

@@ -63,4 +63,19 @@ public interface JsonPlaceholderApi {
     @DELETE("/users/{id}")
     Call<Void> userDelete(@Path("id") Integer id);
 
+    @GET("/comments")
+    Call<List<CommentResponse>> allComments();
+
+    @GET("/comments/{id}")
+    Call<CommentResponse> getCommentById(@Path("id") Integer id);
+
+    @POST("/comments")
+    Call<CommentResponse> commentCreate(@Body CommentCreateRequest request);
+
+    @PUT("/comments/{id}")
+    Call<CommentResponse> commentUpdate(@Path("id") Integer id, @Body CommentUpdateRequest request);
+
+    @DELETE("/comments/{id}")
+    Call<Void> commentDelete(@Path("id") Integer id);
+
 }
