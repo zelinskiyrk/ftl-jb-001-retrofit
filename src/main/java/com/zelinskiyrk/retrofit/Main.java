@@ -1,5 +1,7 @@
 package com.zelinskiyrk.retrofit;
 
+import com.zelinskiyrk.retrofit.request.AlbumCreateRequest;
+import com.zelinskiyrk.retrofit.request.AlbumUpdateRequest;
 import com.zelinskiyrk.retrofit.request.PostCreateRequest;
 import com.zelinskiyrk.retrofit.request.PostUpdateRequest;
 import com.zelinskiyrk.retrofit.response.AlbumResponse;
@@ -88,6 +90,33 @@ public class Main {
             });
         }
         System.out.println("passed");
+
+        System.out.println("-------- All Albums --------");
+        List<AlbumResponse> allAlbums = api.allAlbums().execute().body();
+        System.out.println(allAlbums);
+
+        System.out.println("-------- Album By ID --------");
+        AlbumResponse albumById = api.albumById(1).execute().body();
+        System.out.println(albumById);
+
+        System.out.println("-------- Album CREATE --------");
+        AlbumResponse albumCreate = api.albumCreate(AlbumCreateRequest.builder()
+        .userId(1)
+        .id(1)
+        .title("testTitle").build()).execute().body();
+        System.out.println(albumCreate);
+
+        System.out.println("-------- Album UPDATE --------");
+        AlbumResponse albumUpdate = api.albumUpdate(1, AlbumUpdateRequest.builder()
+        .userId(3)
+        .id(1)
+        .title("updateTitle")
+        .build()).execute().body();
+        System.out.println(albumUpdate);
+
+        System.out.println("-------- Album DELETE --------");
+        Boolean albumDelete = api.albumDelete(1).execute().isSuccessful();
+        System.out.println(albumDelete);
     }
 
 }
