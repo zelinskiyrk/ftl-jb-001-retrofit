@@ -1,9 +1,6 @@
 package com.zelinskiyrk.retrofit;
 
-import com.zelinskiyrk.retrofit.request.AlbumCreateRequest;
-import com.zelinskiyrk.retrofit.request.AlbumUpdateRequest;
-import com.zelinskiyrk.retrofit.request.PostCreateRequest;
-import com.zelinskiyrk.retrofit.request.PostUpdateRequest;
+import com.zelinskiyrk.retrofit.request.*;
 import com.zelinskiyrk.retrofit.response.AlbumResponse;
 import com.zelinskiyrk.retrofit.response.CommentResponse;
 import com.zelinskiyrk.retrofit.response.PostResponse;
@@ -117,6 +114,42 @@ public class Main {
         System.out.println("-------- Album DELETE --------");
         Boolean albumDelete = api.albumDelete(1).execute().isSuccessful();
         System.out.println(albumDelete);
+
+        System.out.println("-------- Get User By Id --------");
+        UserResponse user = api.user(1).execute().body();
+        System.out.println(user);
+
+        System.out.println("-------- User Create --------");
+        UserResponse userCreate = api.userCreate(UserCreateRequest.builder()
+                .id(11)
+                .name("Roman")
+                .username("ZRK")
+                .address(new UserCreateRequest.Address("Volodarskogo", "5", "Volgograd", "400066",
+                        new UserCreateRequest.Geo("48.704653", "44.516238")))
+                .company(new UserCreateRequest.Company("Administration", "Government", "bs"))
+                .email("newUser@gmail.com")
+                .phone("30-12-57")
+                .website("www.volgadmin.ru")
+                .build()).execute().body();
+        System.out.println(userCreate);
+
+        System.out.println("-------- User Update --------");
+        UserResponse userUpdate = api.userUpdate(1, UserUpdateRequest.builder()
+                .name("John")
+                .username("Jonny")
+                .email("newmail@mail.com")
+                .phone("555666777")
+                .website("newsite.com")
+                .address(new UserUpdateRequest.Address("street", "suite", "city", "111111",
+                         new UserUpdateRequest.Geo("555", "777")))
+                .company(new UserUpdateRequest.Company("name", "phrase", "bs1"))
+                .build()).execute().body();
+        System.out.println(userUpdate);
+
+        System.out.println("-------- User Delete --------");
+        Boolean userDelete = api.userDelete(1).execute().isSuccessful();
+        System.out.println(userDelete);
+
     }
 
 }

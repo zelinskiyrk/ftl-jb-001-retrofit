@@ -1,9 +1,6 @@
 package com.zelinskiyrk.retrofit;
 
-import com.zelinskiyrk.retrofit.request.AlbumCreateRequest;
-import com.zelinskiyrk.retrofit.request.AlbumUpdateRequest;
-import com.zelinskiyrk.retrofit.request.PostCreateRequest;
-import com.zelinskiyrk.retrofit.request.PostUpdateRequest;
+import com.zelinskiyrk.retrofit.request.*;
 import com.zelinskiyrk.retrofit.response.AlbumResponse;
 import com.zelinskiyrk.retrofit.response.CommentResponse;
 import com.zelinskiyrk.retrofit.response.PostResponse;
@@ -53,5 +50,17 @@ public interface JsonPlaceholderApi {
 
     @DELETE("/albums/{id}")
     Call<Void> albumDelete(@Path("id") Integer id);
+
+    @GET("/users/{id}")
+    Call<UserResponse> user(@Path("id") Integer id);
+
+    @POST("/users")
+    Call<UserResponse> userCreate(@Body UserCreateRequest request);
+
+    @PUT("/users/{id}")
+    Call<UserResponse> userUpdate(@Path("id") Integer id, @Body UserUpdateRequest request);
+
+    @DELETE("/users/{id}")
+    Call<Void> userDelete(@Path("id") Integer id);
 
 }
